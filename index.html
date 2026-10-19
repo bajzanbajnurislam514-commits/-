@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix — Фильмы, сериалы и многое другое</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="hero">
+    <div class="backdrop" aria-hidden="true">
+      <div class="poster-grid">
+        <div class="poster p1"></div><div class="poster p2"></div><div class="poster p3"></div>
+        <div class="poster p4"></div><div class="poster p5"></div><div class="poster p6"></div>
+        <div class="poster p7"></div><div class="poster p8"></div><div class="poster p9"></div>
+        <div class="poster p10"></div><div class="poster p11"></div><div class="poster p12"></div>
+        <div class="poster p13"></div><div class="poster p14"></div><div class="poster p15"></div>
+        <div class="poster p16"></div><div class="poster p17"></div><div class="poster p18"></div>
+      </div>
+    </div>
+    <header class="topbar">
+      <a class="logo" href="#" aria-label="Netflix">NETFLIX</a>
+      <div class="nav-actions">
+        <label class="language">
+          <span aria-hidden="true">文</span>
+          <select aria-label="Язык">
+            <option>Русский</option><option>English</option><option>Қазақша</option>
+          </select>
+          <span class="chevron">⌄</span>
+        </label>
+        <button class="sign-in" type="button" id="loginBtn">Войти</button>
+      </div>
+    </header>
+
+    <section class="hero-content">
+      <h1>Фильмы, сериалы и<br class="desktop-break"> многое другое без<br class="desktop-break"> ограничений</h1>
+      <p class="price">От 7,99 €. Отменить подписку можно в любое время.</p>
+      <p class="prompt">Готовы смотреть? Введите адрес электронной почты, чтобы оформить или<br class="desktop-break"> возобновить подписку.</p>
+      <form class="signup" id="signupForm">
+        <div class="email-wrap">
+          <input id="email" type="email" placeholder=" " autocomplete="email" required>
+          <label for="email">Адрес электронной почты</label>
+          <span class="error" id="emailError">Введите действительный адрес электронной почты.</span>
+        </div>
+        <button type="submit" class="start">Начать смотреть <span class="arrow">›</span></button>
+      </form>
+      <p class="notice" id="notice" role="status"></p>
+    </section>
+    <div class="bottom-curve" aria-hidden="true"></div>
+  </main>
+  <script>
+    const form = document.getElementById('signupForm');
+    const email = document.getElementById('email');
+    const error = document.getElementById('emailError');
+    const notice = document.getElementById('notice');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!email.validity.valid || !email.value.trim()) {
+        error.classList.add('visible');
+        email.focus();
+        return;
+      }
+      error.classList.remove('visible');
+      notice.textContent = 'Демо-страница: адрес введён. Подключите backend, чтобы продолжить регистрацию.';
+    });
+    email.addEventListener('input', () => {
+      error.classList.remove('visible');
+      notice.textContent = '';
+    });
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      notice.textContent = 'Демо-страница входа. Для настоящей авторизации нужен backend.';
+    });
+  </script>
+</body>
+</html>
